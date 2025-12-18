@@ -297,14 +297,6 @@ This project is developed for NexGen Logistics case study demonstration purposes
 
 ---
 
-## 🎖️ Credits
-
-**Developed by**: Senior Data Scientist & BI Developer
-**Framework**: Streamlit + Plotly
-**Inspired by**: Modern logistics optimization platforms and sustainability initiatives
-
----
-
 ## 🚀 Next Steps
 
 1. **Run the mock data generator** to create realistic datasets
