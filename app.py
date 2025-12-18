@@ -78,6 +78,7 @@ st.markdown("""
 if 'data_processor' not in st.session_state:
     st.session_state.data_processor = None
     st.session_state.data_loaded = False
+    st.session_state.using_custom_data = False
 
 @st.cache_data
 def load_data():
@@ -93,6 +94,47 @@ def load_data():
             return None
     except Exception as e:
         st.error(f"Error loading data: {str(e)}")
+        return None
+
+def load_uploaded_data(uploaded_files):
+    """Load and process uploaded CSV files"""
+    try:
+        processor = DataProcessor()
+        
+        # Map uploaded files to processor attributes
+        file_mapping = {
+            'orders.csv': 'orders',
+            'delivery_performance.csv': 'delivery',
+            'routes_distance.csv': 'routes',
+            'vehicle_fleet.csv': 'vehicles',
+            'cost_breakdown.csv': 'costs'
+        }
+        
+        # Load uploaded files
+        files_loaded = {}
+        for uploaded_file in uploaded_files:
+            if uploaded_file.name in file_mapping:
+                df = pd.read_csv(uploaded_file)
+                df = processor._standardize_cols(df)
+                setattr(processor, file_mapping[uploaded_file.name], df)
+                files_loaded[uploaded_file.name] = True
+        
+        # Check if all required files are loaded
+        required_files = ['orders.csv', 'delivery_performance.csv', 'routes_distance.csv', 
+                         'vehicle_fleet.csv', 'cost_breakdown.csv']
+        missing_files = [f for f in required_files if f not in files_loaded]
+        
+        if missing_files:
+            st.warning(f"Missing files: {', '.join(missing_files)}. Using default data for missing files.")
+            # Load default files for missing ones
+            processor.load_all_data()
+        
+        # Process the data
+        processor.process_data()
+        return processor
+        
+    except Exception as e:
+        st.error(f"Error loading uploaded data: {str(e)}")
         return None
 
 def render_kpi_ribbon(processor):
@@ -470,10 +512,44 @@ def main():
         
         st.markdown("---")
         
+        # File Upload Section
+        st.markdown("### 📤 Upload Your Data")
+        with st.expander("Upload Custom CSV Files", expanded=False):
+            st.markdown("""
+                Upload your own logistics data files:
+                - `orders.csv`
+                - `delivery_performance.csv`
+                - `routes_distance.csv`
+                - `vehicle_fleet.csv`
+                - `cost_breakdown.csv`
+            """)
+            
+            uploaded_files = st.file_uploader(
+                "Choose CSV files",
+                type=['csv'],
+                accept_multiple_files=True,
+                key="csv_uploader"
+            )
+            
+            if uploaded_files:
+                st.success(f"✓ {len(uploaded_files)} file(s) uploaded")
+                if st.button("📊 Process Uploaded Data", use_container_width=True):
+                    with st.spinner("Processing your data..."):
+                        processor = load_uploaded_data(uploaded_files)
+                        if processor:
+                            st.session_state.data_processor = processor
+                            st.session_state.data_loaded = True
+                            st.session_state.using_custom_data = True
+                            st.success("✓ Custom data loaded successfully!")
+                            st.rerun()
+        
+        st.markdown("---")
+        
         # Data loading
         if st.button("🔄 Reload Data", use_container_width=True):
             st.session_state.data_processor = None
             st.session_state.data_loaded = False
+            st.session_state.using_custom_data = False
             st.rerun()
         
         st.markdown("---")
@@ -486,7 +562,10 @@ def main():
         st.markdown("---")
         st.markdown("**Data Status**")
         if st.session_state.data_loaded:
-            st.success("✓ Data Loaded")
+            if st.session_state.using_custom_data:
+                st.success("✓ Custom Data Loaded")
+            else:
+                st.success("✓ Default Data Loaded")
         else:
             st.warning("⚠ Loading data...")
     
