@@ -28,9 +28,10 @@ st.markdown("""
     <style>
     .main {
         padding: 0rem 1rem;
+        background-color: #1a1a1a;
     }
     .stMetric {
-        background-color: #f0f2f6;
+        background-color: #2d2d2d;
         padding: 15px;
         border-radius: 10px;
         box-shadow: 0 2px 4px rgba(0,0,0,0.1);
@@ -41,35 +42,35 @@ st.markdown("""
         margin-bottom: 20px;
     }
     h1 {
-        color: #1f77b4;
+        color: #4a9eff;
         font-weight: 700;
     }
     h2 {
-        color: #2c3e50;
-        border-bottom: 3px solid #1f77b4;
+        color: #d0d0d0;
+        border-bottom: 3px solid #4a9eff;
         padding-bottom: 10px;
     }
     .insight-box {
-        background-color: #e8f4f8;
+        background-color: #2d2d2d;
         padding: 20px;
         border-radius: 10px;
-        border-left: 5px solid #1f77b4;
+        border-left: 5px solid #4a9eff;
         margin: 20px 0;
-        color: #1a1a1a;
+        color: #e0e0e0;
     }
     .insight-box h3 {
-        color: #1f77b4;
+        color: #4a9eff;
         margin-top: 0;
     }
     .insight-box ul {
-        color: #2c3e50;
+        color: #d0d0d0;
     }
     .insight-box li {
         margin: 10px 0;
         line-height: 1.6;
     }
     .insight-box strong {
-        color: #1a1a1a;
+        color: #e0e0e0;
     }
     </style>
 """, unsafe_allow_html=True)
@@ -582,8 +583,8 @@ def render_home():
     
     st.markdown("""
         <div style='text-align: center; padding: 20px;'>
-            <h1 style='color: #1f77b4; font-size: 3em; margin-bottom: 10px;'>NexGen Logistics</h1>
-            <h2 style='color: #2c3e50; font-size: 1.8em; margin-bottom: 30px;'>Cost Intelligence Platform</h2>
+            <h1 style='color: #4a9eff; font-size: 3em; margin-bottom: 10px;'>NexGen Logistics</h1>
+            <h2 style='color: #d0d0d0; font-size: 1.8em; margin-bottom: 30px;'>Cost Intelligence Platform</h2>
             <p style='font-size: 1.2em; color: #555; max-width: 800px; margin: 0 auto;'>
                 Transform reactive cost management into predictive insights. Identify 15-20% operational savings 
                 through data-driven optimization and sustainability integration.
@@ -600,9 +601,9 @@ def render_home():
     
     with col1:
         st.markdown("""
-            <div style='background-color: #e8f4f8; padding: 20px; border-radius: 10px; border-left: 5px solid #1f77b4; min-height: 200px;'>
-                <h3 style='color: #1f77b4;'>📊 Cost Analytics</h3>
-                <ul style='color: #2c3e50;'>
+            <div style='background-color: #2d2d2d; padding: 20px; border-radius: 10px; border-left: 5px solid #4a9eff; min-height: 200px;'>
+                <h3 style='color: #4a9eff;'>📊 Cost Analytics</h3>
+                <ul style='color: #d0d0d0;'>
                     <li>Real-time cost tracking</li>
                     <li>Cost leakage detection</li>
                     <li>Profit margin analysis</li>
@@ -613,9 +614,9 @@ def render_home():
     
     with col2:
         st.markdown("""
-            <div style='background-color: #e8f4f8; padding: 20px; border-radius: 10px; border-left: 5px solid #e74c3c; min-height: 200px;'>
-                <h3 style='color: #e74c3c;'>🔍 Leakage Analysis</h3>
-                <ul style='color: #2c3e50;'>
+            <div style='background-color: #2d2d2d; padding: 20px; border-radius: 10px; border-left: 5px solid #ff6b6b; min-height: 200px;'>
+                <h3 style='color: #ff6b6b;'>🔍 Leakage Analysis</h3>
+                <ul style='color: #d0d0d0;'>
                     <li>Delay cost identification</li>
                     <li>Damage cost tracking</li>
                     <li>Carrier overcharge detection</li>
@@ -626,9 +627,9 @@ def render_home():
     
     with col3:
         st.markdown("""
-            <div style='background-color: #e8f4f8; padding: 20px; border-radius: 10px; border-left: 5px solid #2ecc71; min-height: 200px;'>
-                <h3 style='color: #2ecc71;'>🎯 Optimization</h3>
-                <ul style='color: #2c3e50;'>
+            <div style='background-color: #2d2d2d; padding: 20px; border-radius: 10px; border-left: 5px solid #51cf66; min-height: 200px;'>
+                <h3 style='color: #51cf66;'>🎯 Optimization</h3>
+                <ul style='color: #d0d0d0;'>
                     <li>Carrier value scoring</li>
                     <li>AI-powered recommendations</li>
                     <li>CO₂ reduction strategies</li>
@@ -647,10 +648,10 @@ def render_home():
     with col1:
         st.markdown("""
             <div class='insight-box'>
-                <h4 style='color: #1f77b4;'>Custom Data Analysis</h4>
+                <h4 style='color: #4a9eff;'>Custom Data Analysis</h4>
                 <p>Upload your own logistics data files to get personalized insights and recommendations. 
                 The platform supports the following CSV files:</p>
-                <ul style='color: #2c3e50;'>
+                <ul style='color: #d0d0d0;'>
                     <li><strong>orders.csv</strong> - Order details and transactions</li>
                     <li><strong>delivery_performance.csv</strong> - Carrier performance metrics</li>
                     <li><strong>routes_distance.csv</strong> - Route information and distances</li>
@@ -689,16 +690,16 @@ def render_home():
     
     with col2:
         st.markdown("""
-            <div style='background-color: #fff3cd; padding: 20px; border-radius: 10px; border-left: 5px solid #ffc107;'>
-                <h4 style='color: #856404; margin-top: 0;'>💡 Quick Start</h4>
-                <ol style='color: #856404; padding-left: 20px;'>
+            <div style='background-color: #3d3d2d; padding: 20px; border-radius: 10px; border-left: 5px solid #ffc107;'>
+                <h4 style='color: #ffd54f; margin-top: 0;'>💡 Quick Start</h4>
+                <ol style='color: #ffd54f; padding-left: 20px;'>
                     <li>Upload your CSV files</li>
                     <li>Click "Process & Analyze"</li>
                     <li>Explore insights in dashboard</li>
                     <li>Download recommendations</li>
                 </ol>
                 <hr style='border-color: #ffc107;'>
-                <p style='color: #856404; font-size: 0.9em;'><strong>Or continue with demo data →</strong></p>
+                <p style='color: #ffd54f; font-size: 0.9em;'><strong>Or continue with demo data →</strong></p>
             </div>
         """, unsafe_allow_html=True)
     
@@ -742,14 +743,14 @@ def render_home():
         with col1:
             st.markdown("""
                 <div class='insight-box'>
-                    <h3 style='color: #1f77b4; margin-top: 0;'>About This Platform:</h3>
-                    <p style='color: #2c3e50; font-size: 1.1em;'>
+                    <h3 style='color: #4a9eff; margin-top: 0;'>About This Platform:</h3>
+                    <p style='color: #d0d0d0; font-size: 1.1em;'>
                         This platform analyzes logistics data to identify cost savings opportunities 
                         and optimize carrier selection based on cost, performance, and sustainability metrics.
                     </p>
                     
-                    <h4 style='color: #1f77b4;'>Key Capabilities:</h4>
-                    <ul style='color: #2c3e50; font-size: 1.05em;'>
+                    <h4 style='color: #4a9eff;'>Key Capabilities:</h4>
+                    <ul style='color: #d0d0d0; font-size: 1.05em;'>
                         <li><strong>Real-time cost intelligence</strong> - Monitor costs as they happen</li>
                         <li><strong>Predictive analytics</strong> - Forecast future cost trends</li>
                         <li><strong>Carrier optimization</strong> - Select best carriers automatically</li>
@@ -762,8 +763,8 @@ def render_home():
         with col2:
             st.markdown("""
                 <div class='insight-box'>
-                    <h3 style='color: #e74c3c; margin-top: 0;'>How to Use:</h3>
-                    <ol style='color: #2c3e50; font-size: 1.05em;'>
+                    <h3 style='color: #ff6b6b; margin-top: 0;'>How to Use:</h3>
+                    <ol style='color: #d0d0d0; font-size: 1.05em;'>
                         <li><strong>Upload Data:</strong> Upload your CSV files or use demo data</li>
                         <li><strong>Overview:</strong> View executive KPIs and cost distribution</li>
                         <li><strong>Cost Leakage:</strong> Identify hidden costs and inefficiencies</li>
@@ -771,8 +772,8 @@ def render_home():
                         <li><strong>Export:</strong> Download insights and recommendations</li>
                     </ol>
                     
-                    <h4 style='color: #e74c3c;'>Expected Outcomes:</h4>
-                    <ul style='color: #2c3e50; font-size: 1.05em;'>
+                    <h4 style='color: #ff6b6b;'>Expected Outcomes:</h4>
+                    <ul style='color: #d0d0d0; font-size: 1.05em;'>
                         <li>15-20% operational cost savings</li>
                         <li>Improved delivery performance</li>
                         <li>Reduced carbon footprint</li>
@@ -792,23 +793,23 @@ def render_home():
         if st.session_state.data_loaded:
             if st.session_state.using_custom_data:
                 st.markdown("""
-                    <div style='background-color: #d4edda; padding: 20px; border-radius: 10px; border-left: 5px solid #28a745; text-align: center;'>
-                        <h3 style='color: #155724; margin: 0;'>✓ Custom Data Loaded</h3>
-                        <p style='color: #155724; margin: 10px 0 0 0; font-size: 0.9em;'>Using your uploaded files</p>
+                    <div style='background-color: #2d4a2d; padding: 20px; border-radius: 10px; border-left: 5px solid #51cf66; text-align: center;'>
+                        <h3 style='color: #51cf66; margin: 0;'>✓ Custom Data Loaded</h3>
+                        <p style='color: #51cf66; margin: 10px 0 0 0; font-size: 0.9em;'>Using your uploaded files</p>
                     </div>
                 """, unsafe_allow_html=True)
             else:
                 st.markdown("""
-                    <div style='background-color: #d1ecf1; padding: 20px; border-radius: 10px; border-left: 5px solid #17a2b8; text-align: center;'>
-                        <h3 style='color: #0c5460; margin: 0;'>ℹ️ Demo Data Active</h3>
-                        <p style='color: #0c5460; margin: 10px 0 0 0; font-size: 0.9em;'>Using default sample data</p>
+                    <div style='background-color: #2d3d4a; padding: 20px; border-radius: 10px; border-left: 5px solid #4a9eff; text-align: center;'>
+                        <h3 style='color: #4a9eff; margin: 0;'>ℹ️ Demo Data Active</h3>
+                        <p style='color: #4a9eff; margin: 10px 0 0 0; font-size: 0.9em;'>Using default sample data</p>
                     </div>
                 """, unsafe_allow_html=True)
         else:
             st.markdown("""
-                <div style='background-color: #fff3cd; padding: 20px; border-radius: 10px; border-left: 5px solid #ffc107; text-align: center;'>
-                    <h3 style='color: #856404; margin: 0;'>⚠️ No Data Loaded</h3>
-                    <p style='color: #856404; margin: 10px 0 0 0; font-size: 0.9em;'>Please load or upload data</p>
+                <div style='background-color: #3d3d2d; padding: 20px; border-radius: 10px; border-left: 5px solid #ffc107; text-align: center;'>
+                    <h3 style='color: #ffd54f; margin: 0;'>⚠️ No Data Loaded</h3>
+                    <p style='color: #ffd54f; margin: 10px 0 0 0; font-size: 0.9em;'>Please load or upload data</p>
                 </div>
             """, unsafe_allow_html=True)
     
@@ -818,22 +819,22 @@ def render_home():
             if processor and processor.merged_data is not None:
                 order_count = len(processor.merged_data)
                 st.markdown(f"""
-                    <div style='background-color: #e8f4f8; padding: 20px; border-radius: 10px; border-left: 5px solid #1f77b4; text-align: center;'>
-                        <h3 style='color: #1f77b4; margin: 0; font-size: 2.5em;'>{order_count}</h3>
-                        <p style='color: #2c3e50; margin: 10px 0 0 0; font-size: 1.1em; font-weight: 600;'>Total Orders</p>
+                    <div style='background-color: #2d2d2d; padding: 20px; border-radius: 10px; border-left: 5px solid #4a9eff; text-align: center;'>
+                        <h3 style='color: #4a9eff; margin: 0; font-size: 2.5em;'>{order_count}</h3>
+                        <p style='color: #d0d0d0; margin: 10px 0 0 0; font-size: 1.1em; font-weight: 600;'>Total Orders</p>
                     </div>
                 """, unsafe_allow_html=True)
         else:
             st.markdown("""
-                <div style='background-color: #f8f9fa; padding: 20px; border-radius: 10px; border-left: 5px solid #6c757d; text-align: center;'>
-                    <h3 style='color: #6c757d; margin: 0; font-size: 2.5em;'>—</h3>
-                    <p style='color: #6c757d; margin: 10px 0 0 0; font-size: 1.1em; font-weight: 600;'>Total Orders</p>
+                <div style='background-color: #2d2d2d; padding: 20px; border-radius: 10px; border-left: 5px solid #6c757d; text-align: center;'>
+                    <h3 style='color: #999999; margin: 0; font-size: 2.5em;'>—</h3>
+                    <p style='color: #999999; margin: 10px 0 0 0; font-size: 1.1em; font-weight: 600;'>Total Orders</p>
                 </div>
             """, unsafe_allow_html=True)
     
     with col3:
         st.markdown("""
-            <div style='background-color: #f8f9fa; padding: 15px; border-radius: 10px; text-align: center;'>
+            <div style='background-color: #2d2d2d; padding: 15px; border-radius: 10px; text-align: center;'>
         """, unsafe_allow_html=True)
         if st.button("🔄 Reload Default Data", use_container_width=True, type="secondary"):
             st.session_state.data_processor = None
