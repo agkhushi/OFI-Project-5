@@ -856,7 +856,7 @@ def main():
         st.markdown("---")
         
         # Home button
-        if st.button("🏠 Home", use_container_width=True, type="primary" if st.session_state.current_page == "🏠 Home" else "secondary"):
+        if st.button("🏠 Home", use_container_width=True, type="primary" if st.session_state.current_page == "🏠 Home" else "secondary", key="home_button"):
             st.session_state.current_page = "🏠 Home"
             st.rerun()
         
