@@ -498,10 +498,87 @@ def render_optimization_engine(processor):
 def render_home():
     """Render the home/landing page"""
     
-    # Hero Section
-    col1, col2, col3 = st.columns([1, 2, 1])
-    with col2:
-        st.image("https://img.icons8.com/color/96/000000/truck.png", width=120)
+    # Add CSS animation for truck
+    st.markdown("""
+        <style>
+        @keyframes truck-drive {
+            0% {
+                transform: translateX(-100px);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateX(calc(100vw - 100px));
+                opacity: 0;
+            }
+        }
+        
+        @keyframes road-scroll {
+            0% {
+                background-position: 0 0;
+            }
+            100% {
+                background-position: 100px 0;
+            }
+        }
+        
+        .truck-container {
+            position: relative;
+            width: 100%;
+            height: 150px;
+            overflow: hidden;
+            margin: 20px 0;
+            background: linear-gradient(to bottom, #1e3a5f 0%, #2c5282 70%, #4a5568 70%, #4a5568 75%, transparent 75%);
+            border-radius: 10px;
+        }
+        
+        .road {
+            position: absolute;
+            bottom: 35px;
+            width: 100%;
+            height: 5px;
+            background: repeating-linear-gradient(
+                to right,
+                #fbbf24 0px,
+                #fbbf24 20px,
+                transparent 20px,
+                transparent 40px
+            );
+            animation: road-scroll 1s linear infinite;
+        }
+        
+        .truck-animated {
+            position: absolute;
+            bottom: 20px;
+            width: 120px;
+            height: 120px;
+            animation: truck-drive 8s ease-in-out infinite;
+        }
+        
+        .clouds {
+            position: absolute;
+            top: 20px;
+            width: 100%;
+            height: 60px;
+            background-image: 
+                radial-gradient(ellipse at 20% 50%, rgba(255,255,255,0.3) 0%, transparent 50%),
+                radial-gradient(ellipse at 60% 30%, rgba(255,255,255,0.2) 0%, transparent 50%),
+                radial-gradient(ellipse at 85% 40%, rgba(255,255,255,0.25) 0%, transparent 50%);
+            animation: road-scroll 20s linear infinite;
+        }
+        </style>
+        
+        <div class='truck-container'>
+            <div class='clouds'></div>
+            <div class='road'></div>
+            <img src='https://img.icons8.com/color/96/000000/truck.png' class='truck-animated' alt='Delivery Truck'>
+        </div>
+    """, unsafe_allow_html=True)
     
     st.markdown("""
         <div style='text-align: center; padding: 20px;'>
