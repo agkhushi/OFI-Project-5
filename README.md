@@ -1,5 +1,6 @@
 # 🚚 NexGen Logistics - Cost Intelligence Platform
 
+Live link : https://khushiagarwal-ofi-project.streamlit.app/
 ## Overview
 
 The **Cost Intelligence Platform** transforms reactive cost management into predictive insights for NexGen Logistics. This interactive Streamlit application analyzes logistics operations to identify 15-20% operational cost savings through advanced analytics, optimization recommendations, and sustainability integration.
