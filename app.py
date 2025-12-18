@@ -79,6 +79,7 @@ if 'data_processor' not in st.session_state:
     st.session_state.data_processor = None
     st.session_state.data_loaded = False
     st.session_state.using_custom_data = False
+    st.session_state.current_page = "🏠 Home"
 
 @st.cache_data
 def load_data():
@@ -493,6 +494,207 @@ def render_optimization_engine(processor):
         </div>
     """, unsafe_allow_html=True)
 
+def render_home():
+    """Render the home/landing page"""
+    
+    # Hero Section
+    col1, col2, col3 = st.columns([1, 2, 1])
+    with col2:
+        st.image("https://img.icons8.com/color/96/000000/truck.png", width=120)
+    
+    st.markdown("""
+        <div style='text-align: center; padding: 20px;'>
+            <h1 style='color: #1f77b4; font-size: 3em; margin-bottom: 10px;'>NexGen Logistics</h1>
+            <h2 style='color: #2c3e50; font-size: 1.8em; margin-bottom: 30px;'>Cost Intelligence Platform</h2>
+            <p style='font-size: 1.2em; color: #555; max-width: 800px; margin: 0 auto;'>
+                Transform reactive cost management into predictive insights. Identify 15-20% operational savings 
+                through data-driven optimization and sustainability integration.
+            </p>
+        </div>
+    """, unsafe_allow_html=True)
+    
+    st.markdown("---")
+    
+    # Key Features Section
+    st.markdown("### 🚀 Platform Features")
+    
+    col1, col2, col3 = st.columns(3)
+    
+    with col1:
+        st.markdown("""
+            <div style='background-color: #e8f4f8; padding: 20px; border-radius: 10px; border-left: 5px solid #1f77b4; min-height: 200px;'>
+                <h3 style='color: #1f77b4;'>📊 Cost Analytics</h3>
+                <ul style='color: #2c3e50;'>
+                    <li>Real-time cost tracking</li>
+                    <li>Cost leakage detection</li>
+                    <li>Profit margin analysis</li>
+                    <li>Revenue vs cost trends</li>
+                </ul>
+            </div>
+        """, unsafe_allow_html=True)
+    
+    with col2:
+        st.markdown("""
+            <div style='background-color: #e8f4f8; padding: 20px; border-radius: 10px; border-left: 5px solid #e74c3c; min-height: 200px;'>
+                <h3 style='color: #e74c3c;'>🔍 Leakage Analysis</h3>
+                <ul style='color: #2c3e50;'>
+                    <li>Delay cost identification</li>
+                    <li>Damage cost tracking</li>
+                    <li>Carrier overcharge detection</li>
+                    <li>Route inefficiency analysis</li>
+                </ul>
+            </div>
+        """, unsafe_allow_html=True)
+    
+    with col3:
+        st.markdown("""
+            <div style='background-color: #e8f4f8; padding: 20px; border-radius: 10px; border-left: 5px solid #2ecc71; min-height: 200px;'>
+                <h3 style='color: #2ecc71;'>🎯 Optimization</h3>
+                <ul style='color: #2c3e50;'>
+                    <li>Carrier value scoring</li>
+                    <li>AI-powered recommendations</li>
+                    <li>CO₂ reduction strategies</li>
+                    <li>Green logistics ROI</li>
+                </ul>
+            </div>
+        """, unsafe_allow_html=True)
+    
+    st.markdown("---")
+    
+    # Data Upload Section
+    st.markdown("### 📤 Upload Your Data")
+    
+    col1, col2 = st.columns([2, 1])
+    
+    with col1:
+        st.markdown("""
+            <div class='insight-box'>
+                <h4 style='color: #1f77b4;'>Custom Data Analysis</h4>
+                <p>Upload your own logistics data files to get personalized insights and recommendations. 
+                The platform supports the following CSV files:</p>
+                <ul style='color: #2c3e50;'>
+                    <li><strong>orders.csv</strong> - Order details and transactions</li>
+                    <li><strong>delivery_performance.csv</strong> - Carrier performance metrics</li>
+                    <li><strong>routes_distance.csv</strong> - Route information and distances</li>
+                    <li><strong>vehicle_fleet.csv</strong> - Fleet details and specifications</li>
+                    <li><strong>cost_breakdown.csv</strong> - Detailed cost components</li>
+                </ul>
+            </div>
+        """, unsafe_allow_html=True)
+        
+        uploaded_files = st.file_uploader(
+            "Choose CSV files to upload",
+            type=['csv'],
+            accept_multiple_files=True,
+            key="home_csv_uploader",
+            help="Upload one or more CSV files. Missing files will use default data."
+        )
+        
+        if uploaded_files:
+            st.success(f"✓ {len(uploaded_files)} file(s) uploaded: {', '.join([f.name for f in uploaded_files])}")
+            
+            col_btn1, col_btn2 = st.columns(2)
+            with col_btn1:
+                if st.button("📊 Process & Analyze Data", use_container_width=True, type="primary"):
+                    with st.spinner("Processing your data..."):
+                        processor = load_uploaded_data(uploaded_files)
+                        if processor:
+                            st.session_state.data_processor = processor
+                            st.session_state.data_loaded = True
+                            st.session_state.using_custom_data = True
+                            st.session_state.current_page = "📊 Overview"
+                            st.success("✓ Custom data loaded successfully!")
+                            st.rerun()
+            with col_btn2:
+                if st.button("🔄 Clear Upload", use_container_width=True):
+                    st.rerun()
+    
+    with col2:
+        st.markdown("""
+            <div style='background-color: #fff3cd; padding: 20px; border-radius: 10px; border-left: 5px solid #ffc107;'>
+                <h4 style='color: #856404; margin-top: 0;'>💡 Quick Start</h4>
+                <ol style='color: #856404; padding-left: 20px;'>
+                    <li>Upload your CSV files</li>
+                    <li>Click "Process & Analyze"</li>
+                    <li>Explore insights in dashboard</li>
+                    <li>Download recommendations</li>
+                </ol>
+                <hr style='border-color: #ffc107;'>
+                <p style='color: #856404; font-size: 0.9em;'><strong>Or continue with demo data →</strong></p>
+            </div>
+        """, unsafe_allow_html=True)
+    
+    st.markdown("---")
+    
+    # Action Buttons
+    st.markdown("### 🎯 Get Started")
+    
+    col1, col2, col3, col4 = st.columns(4)
+    
+    with col1:
+        if st.button("📊 View Overview Dashboard", use_container_width=True, type="primary"):
+            st.session_state.current_page = "📊 Overview"
+            st.rerun()
+    
+    with col2:
+        if st.button("🔍 Analyze Cost Leakage", use_container_width=True):
+            st.session_state.current_page = "🔍 Cost Leakage Analysis"
+            st.rerun()
+    
+    with col3:
+        if st.button("🎯 Optimization Engine", use_container_width=True):
+            st.session_state.current_page = "🎯 Optimization Engine"
+            st.rerun()
+    
+    with col4:
+        if st.button("📖 View Documentation", use_container_width=True):
+            st.markdown("### 📖 Documentation")
+            st.info("""
+                **About This Platform:**
+                
+                This platform analyzes logistics data to identify cost savings opportunities 
+                and optimize carrier selection based on cost, performance, and sustainability metrics.
+                
+                **Key Capabilities:**
+                - Real-time cost intelligence
+                - Predictive analytics
+                - Carrier optimization
+                - Sustainability tracking
+                - ROI calculation
+            """)
+    
+    st.markdown("---")
+    
+    # Data Status
+    st.markdown("### 📊 Current Data Status")
+    
+    col1, col2, col3 = st.columns(3)
+    
+    with col1:
+        if st.session_state.data_loaded:
+            if st.session_state.using_custom_data:
+                st.success("✓ Custom Data Loaded")
+            else:
+                st.info("ℹ️ Using Default Demo Data")
+        else:
+            st.warning("⚠️ No Data Loaded")
+    
+    with col2:
+        if st.session_state.data_loaded:
+            processor = st.session_state.data_processor
+            if processor and processor.merged_data is not None:
+                st.metric("Total Orders", len(processor.merged_data))
+        else:
+            st.metric("Total Orders", "—")
+    
+    with col3:
+        if st.button("🔄 Reload Default Data", use_container_width=True):
+            st.session_state.data_processor = None
+            st.session_state.data_loaded = False
+            st.session_state.using_custom_data = False
+            st.rerun()
+
+
 def main():
     """Main application function"""
     
@@ -503,12 +705,24 @@ def main():
         st.markdown("### Cost Intelligence Platform")
         st.markdown("---")
         
+        # Home button
+        if st.button("🏠 Home", use_container_width=True, type="primary" if st.session_state.current_page == "🏠 Home" else "secondary"):
+            st.session_state.current_page = "🏠 Home"
+            st.rerun()
+        
+        st.markdown("---")
+        
         # Navigation
         page = st.radio(
-            "Navigation",
+            "Dashboard Pages",
             ["📊 Overview", "🔍 Cost Leakage Analysis", "🎯 Optimization Engine"],
-            label_visibility="collapsed"
+            index=["📊 Overview", "🔍 Cost Leakage Analysis", "🎯 Optimization Engine"].index(st.session_state.current_page) if st.session_state.current_page in ["📊 Overview", "🔍 Cost Leakage Analysis", "🎯 Optimization Engine"] else 0,
+            key="sidebar_nav"
         )
+        
+        # Update current page if changed via radio
+        if page != st.session_state.current_page and st.session_state.current_page != "🏠 Home":
+            st.session_state.current_page = page
         
         st.markdown("---")
         
@@ -570,32 +784,37 @@ def main():
             st.warning("⚠ Loading data...")
     
     # Main content area
-    st.title("🚚 NexGen Logistics Cost Intelligence Platform")
-    st.markdown("*Transform reactive cost management into predictive insights*")
-    
-    st.markdown("---")
-    
-    # Load data
-    if not st.session_state.data_loaded:
-        with st.spinner("Loading and processing data..."):
-            processor = load_data()
-            if processor:
-                st.session_state.data_processor = processor
-                st.session_state.data_loaded = True
-                st.rerun()
-            else:
-                st.error("Failed to load data. Please check if all CSV files are present.")
-                st.stop()
-    
-    processor = st.session_state.data_processor
-    
-    # Render selected page
-    if page == "📊 Overview":
-        render_overview(processor)
-    elif page == "🔍 Cost Leakage Analysis":
-        render_cost_leakage(processor)
-    elif page == "🎯 Optimization Engine":
-        render_optimization_engine(processor)
+    if st.session_state.current_page == "🏠 Home":
+        # Render home page
+        render_home()
+    else:
+        # Dashboard pages require data
+        st.title("🚚 NexGen Logistics Cost Intelligence Platform")
+        st.markdown("*Transform reactive cost management into predictive insights*")
+        
+        st.markdown("---")
+        
+        # Load data if not loaded
+        if not st.session_state.data_loaded:
+            with st.spinner("Loading and processing data..."):
+                processor = load_data()
+                if processor:
+                    st.session_state.data_processor = processor
+                    st.session_state.data_loaded = True
+                    st.rerun()
+                else:
+                    st.error("Failed to load data. Please check if all CSV files are present.")
+                    st.stop()
+        
+        processor = st.session_state.data_processor
+        
+        # Render selected dashboard page
+        if st.session_state.current_page == "📊 Overview":
+            render_overview(processor)
+        elif st.session_state.current_page == "🔍 Cost Leakage Analysis":
+            render_cost_leakage(processor)
+        elif st.session_state.current_page == "🎯 Optimization Engine":
+            render_optimization_engine(processor)
 
 if __name__ == "__main__":
     main()
