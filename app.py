@@ -80,6 +80,7 @@ if 'data_processor' not in st.session_state:
     st.session_state.data_loaded = False
     st.session_state.using_custom_data = False
     st.session_state.current_page = "🏠 Home"
+    st.session_state.show_documentation = False
 
 @st.cache_data
 def load_data():
@@ -634,34 +635,74 @@ def render_home():
     with col1:
         if st.button("📊 View Overview Dashboard", use_container_width=True, type="primary"):
             st.session_state.current_page = "📊 Overview"
+            st.session_state.show_documentation = False
             st.rerun()
     
     with col2:
         if st.button("🔍 Analyze Cost Leakage", use_container_width=True):
             st.session_state.current_page = "🔍 Cost Leakage Analysis"
+            st.session_state.show_documentation = False
             st.rerun()
     
     with col3:
         if st.button("🎯 Optimization Engine", use_container_width=True):
             st.session_state.current_page = "🎯 Optimization Engine"
+            st.session_state.show_documentation = False
             st.rerun()
     
     with col4:
         if st.button("📖 View Documentation", use_container_width=True):
-            st.markdown("### 📖 Documentation")
-            st.info("""
-                **About This Platform:**
-                
-                This platform analyzes logistics data to identify cost savings opportunities 
-                and optimize carrier selection based on cost, performance, and sustainability metrics.
-                
-                **Key Capabilities:**
-                - Real-time cost intelligence
-                - Predictive analytics
-                - Carrier optimization
-                - Sustainability tracking
-                - ROI calculation
-            """)
+            st.session_state.show_documentation = not st.session_state.show_documentation
+            st.rerun()
+    
+    # Show documentation if toggled
+    if st.session_state.show_documentation:
+        st.markdown("---")
+        st.markdown("## 📖 Documentation")
+        
+        col1, col2 = st.columns(2)
+        
+        with col1:
+            st.markdown("""
+                <div class='insight-box'>
+                    <h3 style='color: #1f77b4; margin-top: 0;'>About This Platform:</h3>
+                    <p style='color: #2c3e50; font-size: 1.1em;'>
+                        This platform analyzes logistics data to identify cost savings opportunities 
+                        and optimize carrier selection based on cost, performance, and sustainability metrics.
+                    </p>
+                    
+                    <h4 style='color: #1f77b4;'>Key Capabilities:</h4>
+                    <ul style='color: #2c3e50; font-size: 1.05em;'>
+                        <li><strong>Real-time cost intelligence</strong> - Monitor costs as they happen</li>
+                        <li><strong>Predictive analytics</strong> - Forecast future cost trends</li>
+                        <li><strong>Carrier optimization</strong> - Select best carriers automatically</li>
+                        <li><strong>Sustainability tracking</strong> - Measure and reduce CO₂ emissions</li>
+                        <li><strong>ROI calculation</strong> - Quantify savings and benefits</li>
+                    </ul>
+                </div>
+            """, unsafe_allow_html=True)
+        
+        with col2:
+            st.markdown("""
+                <div class='insight-box'>
+                    <h3 style='color: #e74c3c; margin-top: 0;'>How to Use:</h3>
+                    <ol style='color: #2c3e50; font-size: 1.05em;'>
+                        <li><strong>Upload Data:</strong> Upload your CSV files or use demo data</li>
+                        <li><strong>Overview:</strong> View executive KPIs and cost distribution</li>
+                        <li><strong>Cost Leakage:</strong> Identify hidden costs and inefficiencies</li>
+                        <li><strong>Optimization:</strong> Get AI-powered carrier recommendations</li>
+                        <li><strong>Export:</strong> Download insights and recommendations</li>
+                    </ol>
+                    
+                    <h4 style='color: #e74c3c;'>Expected Outcomes:</h4>
+                    <ul style='color: #2c3e50; font-size: 1.05em;'>
+                        <li>15-20% operational cost savings</li>
+                        <li>Improved delivery performance</li>
+                        <li>Reduced carbon footprint</li>
+                        <li>Data-driven decision making</li>
+                    </ul>
+                </div>
+            """, unsafe_allow_html=True)
     
     st.markdown("---")
     
