@@ -870,8 +870,9 @@ def main():
         )
         
         # Update current page if changed via radio
-        if page != st.session_state.current_page and st.session_state.current_page != "🏠 Home":
+        if page != st.session_state.current_page:
             st.session_state.current_page = page
+            st.rerun()
         
         st.markdown("---")
         
