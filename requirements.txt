@@ -1,0 +1,16 @@
+# NexGen Logistics - Cost Intelligence Platform
+# Python Dependencies
+
+# Core Framework
+streamlit==1.29.0
+
+# Data Processing
+pandas==2.1.4
+numpy==1.26.2
+
+# Visualizations
+plotly==5.18.0
+altair==5.2.0
+
+# Additional Utilities
+python-dateutil==2.8.2
