@@ -55,6 +55,21 @@ st.markdown("""
         border-radius: 10px;
         border-left: 5px solid #1f77b4;
         margin: 20px 0;
+        color: #1a1a1a;
+    }
+    .insight-box h3 {
+        color: #1f77b4;
+        margin-top: 0;
+    }
+    .insight-box ul {
+        color: #2c3e50;
+    }
+    .insight-box li {
+        margin: 10px 0;
+        line-height: 1.6;
+    }
+    .insight-box strong {
+        color: #1a1a1a;
     }
     </style>
 """, unsafe_allow_html=True)
