@@ -103,7 +103,7 @@ Project 5 IFO/
 
 ## 📊 Data Environment
 
-### 7 Interconnected CSV Files
+### 5 Interconnected CSV Files
 
 1. **orders.csv** (200 records)
    - Order details with Indian cities (Mumbai, Delhi, Chennai, Bangalore, etc.)
