@@ -791,26 +791,57 @@ def render_home():
     with col1:
         if st.session_state.data_loaded:
             if st.session_state.using_custom_data:
-                st.success("✓ Custom Data Loaded")
+                st.markdown("""
+                    <div style='background-color: #d4edda; padding: 20px; border-radius: 10px; border-left: 5px solid #28a745; text-align: center;'>
+                        <h3 style='color: #155724; margin: 0;'>✓ Custom Data Loaded</h3>
+                        <p style='color: #155724; margin: 10px 0 0 0; font-size: 0.9em;'>Using your uploaded files</p>
+                    </div>
+                """, unsafe_allow_html=True)
             else:
-                st.info("ℹ️ Using Default Demo Data")
+                st.markdown("""
+                    <div style='background-color: #d1ecf1; padding: 20px; border-radius: 10px; border-left: 5px solid #17a2b8; text-align: center;'>
+                        <h3 style='color: #0c5460; margin: 0;'>ℹ️ Demo Data Active</h3>
+                        <p style='color: #0c5460; margin: 10px 0 0 0; font-size: 0.9em;'>Using default sample data</p>
+                    </div>
+                """, unsafe_allow_html=True)
         else:
-            st.warning("⚠️ No Data Loaded")
+            st.markdown("""
+                <div style='background-color: #fff3cd; padding: 20px; border-radius: 10px; border-left: 5px solid #ffc107; text-align: center;'>
+                    <h3 style='color: #856404; margin: 0;'>⚠️ No Data Loaded</h3>
+                    <p style='color: #856404; margin: 10px 0 0 0; font-size: 0.9em;'>Please load or upload data</p>
+                </div>
+            """, unsafe_allow_html=True)
     
     with col2:
         if st.session_state.data_loaded:
             processor = st.session_state.data_processor
             if processor and processor.merged_data is not None:
-                st.metric("Total Orders", len(processor.merged_data))
+                order_count = len(processor.merged_data)
+                st.markdown(f"""
+                    <div style='background-color: #e8f4f8; padding: 20px; border-radius: 10px; border-left: 5px solid #1f77b4; text-align: center;'>
+                        <h3 style='color: #1f77b4; margin: 0; font-size: 2.5em;'>{order_count}</h3>
+                        <p style='color: #2c3e50; margin: 10px 0 0 0; font-size: 1.1em; font-weight: 600;'>Total Orders</p>
+                    </div>
+                """, unsafe_allow_html=True)
         else:
-            st.metric("Total Orders", "—")
+            st.markdown("""
+                <div style='background-color: #f8f9fa; padding: 20px; border-radius: 10px; border-left: 5px solid #6c757d; text-align: center;'>
+                    <h3 style='color: #6c757d; margin: 0; font-size: 2.5em;'>—</h3>
+                    <p style='color: #6c757d; margin: 10px 0 0 0; font-size: 1.1em; font-weight: 600;'>Total Orders</p>
+                </div>
+            """, unsafe_allow_html=True)
     
     with col3:
-        if st.button("🔄 Reload Default Data", use_container_width=True):
+        st.markdown("""
+            <div style='background-color: #f8f9fa; padding: 15px; border-radius: 10px; text-align: center;'>
+        """, unsafe_allow_html=True)
+        if st.button("🔄 Reload Default Data", use_container_width=True, type="secondary"):
             st.session_state.data_processor = None
             st.session_state.data_loaded = False
             st.session_state.using_custom_data = False
+            st.session_state.show_documentation = False
             st.rerun()
+        st.markdown("</div>", unsafe_allow_html=True)
 
 
 def main():
